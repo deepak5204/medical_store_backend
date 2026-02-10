@@ -4,6 +4,8 @@ import Medicine from "../models/Medicine.js";
 
 // Add Medicine
 const addMedicine = async (req, res) => {
+    console.log("adding new medicine");
+    
   try {
     const medicine = await Medicine.create(req.body);
     res.status(201).json(medicine);

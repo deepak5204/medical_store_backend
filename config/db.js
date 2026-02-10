@@ -13,7 +13,7 @@ mongoose.set("strictQuery", true);
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/polling-api");
+    await mongoose.connect("mongodb://localhost:27017/medical_store");
     console.log("MongoDB Connected");
   } catch (error) {
     console.error("MongoDB Connection Error:", error);

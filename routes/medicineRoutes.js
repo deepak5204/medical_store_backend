@@ -5,3 +5,5 @@ import medicineController from '../controllers/medicineController.js';
 
 router.post("/", medicineController.addMedicine);
 router.get("/", medicineController.getAllMedicines);
+
+export default router;

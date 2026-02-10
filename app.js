@@ -11,9 +11,10 @@ db()
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
+// Routes
 app.use("/api/medicines", medicineRoutes);
 
+// Start the server
 app.listen(PORT, (err) => {
     if (err) {
         console.error('Error starting the server:', err);
