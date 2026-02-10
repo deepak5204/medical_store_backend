@@ -25,4 +25,46 @@ const getAllMedicines = async (req, res) => {
   }
 };
 
-export default { addMedicine, getAllMedicines };
+// Get Medicine by ID
+const getMedicineById = async (req, res) => {
+    try {
+        const medicine = await Medicine.findById(req.params.id);
+        if (!medicine) {
+            return res.status(404).json({ message: "Medicine not found" });
+        }
+        res.json(medicine);
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });   
+    }
+}
+
+// Update Medicine
+const updateMedicine = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const medicine = await Medicine.findByIdAndUpdate(id, req.body, { new: true });
+        if (!medicine) {
+            return res.status(404).json({ message: "Medicine not found" });
+        }   
+        res.json(medicine);
+    } catch (error) {
+        res.status(500).json({ message: error.message });   
+    }
+}
+
+// Delete Medicine
+const deleteMedicine = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const medicine = await Medicine.findByIdAndDelete(id);
+        if (!medicine) {
+            return res.status(404).json({ message: "Medicine not found" });
+        }
+        res.json({ message: "Medicine deleted successfully" });
+    } catch (error) {
+        
+    }
+}
+
+export default { addMedicine, getAllMedicines, getMedicineById, updateMedicine, deleteMedicine };
