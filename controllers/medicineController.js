@@ -4,11 +4,20 @@ import Medicine from "../models/Medicine.js";
 
 // Add Medicine
 const addMedicine = async (req, res) => {
-    console.log("adding new medicine");
     
-  try {
-    const medicine = await Medicine.create(req.body);
-    res.status(201).json(medicine);
+    try {
+        let medicines;
+        
+        console.log("adding new medicine");
+    // If array → Bulk insert
+    if (Array.isArray(req.body)) {
+      medicines = await Medicine.insertMany(req.body);
+    } 
+    // If object → Single insert
+    else {
+      medicines = await Medicine.create(req.body);
+    }
+    res.status(201).json(medicines);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -121,7 +130,10 @@ const searchMedicine = async (req, res) => {
 const getMedicinesWithPagination = async (req, res) => {
   try {
     const page = Number(req.query.page) || 1;
-    const limit = 10;
+
+    console.log("Page number:", page);
+
+    const limit = 3;
     const skip = (page - 1) * limit;
 
     const medicines = await Medicine.find()
