@@ -3,9 +3,10 @@ dotenv.config();
 import express from 'express';
 import db from './config/db.js';
 import medicineRoutes from "./routes/medicineRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
-import authRoutes from "./routes/authRoutes.js";
 import errorHandler from "./middleware/errorMiddleware.js";
 
 import swaggerUi from "swagger-ui-express";
@@ -26,6 +27,7 @@ app.use(express.json());
 // Routes
 app.use("/api/medicines", medicineRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // Start the server
 app.listen(PORT, (err) => {
