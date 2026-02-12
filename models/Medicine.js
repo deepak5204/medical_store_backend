@@ -22,7 +22,12 @@ const medicineSchema = new mongoose.Schema({
   },
   category: {
     type: String
-  }
+  },
+  lowStockThreshold: {
+  type: Number,
+  default: 5
+}
+
 }, { timestamps: true });
 
 const Medicine = mongoose.model("Medicine", medicineSchema);
