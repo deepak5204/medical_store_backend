@@ -1,9 +1,9 @@
 import express from 'express';
 const router = express.Router();
-// const medicineController = require('../controllers/medicineController'); 
 import medicineController from '../controllers/medicineController.js';  
+import authMiddleware from '../middleware/authMiddleware.js';
 
-router.post("/", medicineController.addMedicine);
+router.post("/", authMiddleware,medicineController.addMedicine);
 router.get("/", medicineController.getAllMedicines);
 
 router.get("/low-stock", medicineController.getLowStockMedicines);
@@ -14,7 +14,7 @@ router.get("/search", medicineController.searchMedicine);
 
 router.get("/:id", medicineController.getMedicineById);
 router.put("/:id", medicineController.updateMedicine);
-router.delete("/:id", medicineController.deleteMedicine);
+router.delete("/:id", authController, medicineController.deleteMedicine);
 
 
 export default router;
