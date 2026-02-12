@@ -9,6 +9,7 @@ router.get("/", medicineController.getAllMedicines);
 router.get("/low-stock", medicineController.getLowStockMedicines);
 router.get("/expiring-soon", medicineController.getExpiringMedicines);
 router.get("/pagination", medicineController.getMedicinesWithPagination);
+router.get("/search", medicineController.searchMedicine);
 
 
 router.get("/:id", medicineController.getMedicineById);
