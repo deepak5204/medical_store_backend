@@ -1,8 +1,12 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from 'express';
 import db from './config/db.js';
 import medicineRoutes from "./routes/medicineRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
+import authRoutes from "./routes/authRoutes.js";
+
 
 // Connect to MongoDB
 db()
@@ -13,6 +17,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/medicines", medicineRoutes);
+app.use("/api/auth", authRoutes);
 
 // Start the server
 app.listen(PORT, (err) => {
