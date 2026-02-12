@@ -6,10 +6,15 @@ import medicineRoutes from "./routes/medicineRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 import authRoutes from "./routes/authRoutes.js";
+import errorHandler from "./middleware/errorMiddleware.js";
 
 
 // Connect to MongoDB
 db()
+
+// Global error handler
+app.use(errorHandler);
+
 
 // middle for parse request body( form data)
 app.use(express.urlencoded({ extended: true }));
