@@ -7,6 +7,26 @@ import authMiddleware from '../middleware/authMiddleware.js';
 import authorizeRoles  from '../middleware/roleMiddleware.js';
 
 router.post("/", authMiddleware, authorizeRoles("admin"), validate(medicineSchema), medicineController.addMedicine);
+
+/**
+ * @swagger
+ * /api/medicines:
+ *   get:
+ *     summary: Get all medicines
+ *     tags: [Medicines]
+ *     responses:
+ *       200:
+ *         description: List of medicines
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Medicine'
+ *       500:
+ *         description: Internal server error
+ */
+
 router.get("/", medicineController.getAllMedicines);
 
 router.get("/low-stock", medicineController.getLowStockMedicines);
