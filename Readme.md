@@ -1,14 +1,14 @@
-#   Medical Store Inventory Management System (Backend)
+#   🏥 Medical Store Inventory Management System (Backend)
 A production-ready backend for managing medical store inventory including medicine management, authentication, stock alerts, expiry tracking, dashboard analytics, and API documentation.
 
 ##  Features
 
-### Authentication & Authorization
+### 🔐 Authentication & Authorization
 -   JWT-based authentication
 -   Password hashing using bcrypt
 -   Role-Based Access Control (Admin / Staff)
 
-### Medicine Management
+### 💊 Medicine Management
 -   Add Medicine
 -   Update Medicine
 -   Delete Medicine
@@ -16,7 +16,7 @@ A production-ready backend for managing medical store inventory including medici
 -   Search Medicines
 -   Pagination Support
 
-### Smart Inventory Alerts
+### ⚠️ Smart Inventory Alerts
 -   Low Stock Detection (Custom Threshold Support)
 -   Expiring Soon Medicines (Next 30 Days)
 
@@ -67,12 +67,12 @@ git clone https://github.com/deepak5204/medical_store_backend.git
 cd medical-store
 ```
 
-### Install Dependencies
+### 📦 Install Dependencies
 ```bash
 npm install
 ```
 
-### Setup Environment Variables
+### 🔑 Setup Environment Variables
 ```bash
 PORT=3000
 MONGO_URI=your_mongodb_connection_string
@@ -85,15 +85,15 @@ JWT_EXPIRES=7d
 Run Server
 ```
 
-### API Documentation
+### 📘 API Documentation
 Swagger Docs Available At:
 ```bash
 http://localhost:3000/api-docs
 ```
 
 ### Authentication Flow
-1️⃣ Register User
-2️⃣ Login User → Get JWT Token
+1️⃣ Register User <br>
+2️⃣ Login User → Get JWT Token <br>
 3️⃣ Use Token in Header
 
 ### Dashboard API
