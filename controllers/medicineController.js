@@ -122,12 +122,12 @@ const getExpiringMedicines = async (req, res) => {
 // Search Medicine
 const searchMedicine = async (req, res) => {
   try {
-    const { keyword } = req.query;
+    const keyword = req.query.name || "";    
 
     const medicines = await Medicine.find({
       name: { $regex: keyword, $options: "i" }
     });
-
+    
     res.json(medicines);
   } catch (error) {
     res.status(500).json({ message: error.message });

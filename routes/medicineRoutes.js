@@ -63,6 +63,37 @@ router.get("/", medicineController.getAllMedicines);
 router.get("/low-stock", medicineController.getLowStockMedicines);
 router.get("/expiring-soon", medicineController.getExpiringMedicines);
 router.get("/pagination", medicineController.getMedicinesWithPagination);
+
+/**
+ * @swagger
+ * /api/medicines/search:
+ *   get:
+ *     summary: Search medicines by name or category
+ *     description: Returns medicines filtered by name and/or category
+ *     tags: [Medicines]
+ *     parameters:
+ *       - in: query
+ *         name: name
+ *         required: false
+ *         schema:
+ *           type: string
+ *           example: Paracetamol
+ *         description: Medicine name to search
+ *     responses:
+ *       200:
+ *         description: List of matching medicines
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Medicine'
+ *       400:
+ *         description: Invalid query parameters
+ *       500:
+ *         description: Internal server error
+ */
+
 router.get("/search", medicineController.searchMedicine);
 
 
