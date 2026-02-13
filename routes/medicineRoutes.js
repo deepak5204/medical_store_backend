@@ -36,7 +36,6 @@ import authorizeRoles  from '../middleware/roleMiddleware.js';
  *       500:
  *         description: Internal server error
  */
-
 router.post("/", authMiddleware, authorizeRoles("admin"), validate(medicineSchema), medicineController.addMedicine);
 
 /**
@@ -57,7 +56,6 @@ router.post("/", authMiddleware, authorizeRoles("admin"), validate(medicineSchem
  *       500:
  *         description: Internal server error
  */
-
 router.get("/", medicineController.getAllMedicines);
 
 router.get("/low-stock", medicineController.getLowStockMedicines);
@@ -93,7 +91,6 @@ router.get("/pagination", medicineController.getMedicinesWithPagination);
  *       500:
  *         description: Internal server error
  */
-
 router.get("/search", medicineController.searchMedicine);
 
 
@@ -156,7 +153,6 @@ router.get("/:id", medicineController.getMedicineById);
  *       500:
  *         description: Internal server error
  */
-
 router.put("/:id", authMiddleware, authorizeRoles("admin"), medicineController.updateMedicine);
 
 
