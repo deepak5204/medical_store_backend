@@ -67,8 +67,64 @@ router.post("/", authMiddleware, authorizeRoles("admin"), validate(medicineSchem
  */
 router.get("/", medicineController.getAllMedicines);
 
+/**
+ * @swagger
+ * /api/medicines/low-stock:
+ *      get:
+ *          summary: Get low stock medicines
+ *          tags: [Medicines]
+ *          responses:
+ *              200:
+ *                  description: List of low stock medicines
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: array
+ *                              items:
+ *                                  $ref: '#/components/schemas/Medicine'
+ *              500:
+ *                  description: Internal server error
+ */
 router.get("/low-stock", medicineController.getLowStockMedicines);
+
+/**
+ * @swagger
+ * /api/medicines/expiring-soon:
+ *      get:
+ *          summary: Get expiring medicines
+ *          tags: [Medicines]
+ *          responses:
+ *              200:
+ *                  description: List of expiring medicines
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: array
+ *                              items:
+ *                                  $ref: '#/components/schemas/Medicine'
+ *              500:
+ *                  description: Internal server error
+ */
 router.get("/expiring-soon", medicineController.getExpiringMedicines);
+
+/**
+ * @swagger
+ * /api/medicines/pagination:
+ *      get:
+ *          summary: Get medicines with pagination
+ *          tags: [Medicines]
+ *          responses:
+ *              200:
+ *                  description: get medicines with pagination
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: array
+ *                              items:
+ *                                  $ref: '#/components/schemas/Medicine'
+ *              500:
+ *                  description: Internal server error
+ */
 router.get("/pagination", medicineController.getMedicinesWithPagination);
 
 /**
