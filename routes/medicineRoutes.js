@@ -11,6 +11,7 @@ import authorizeRoles  from '../middleware/roleMiddleware.js';
  * /api/medicines:
  *   post:
  *     summary: Add a new medicine
+ *     description: Create a new medicine record (Admin only)
  *     tags: [Medicines]
  *     security:
  *       - bearerAuth: []
@@ -20,6 +21,14 @@ import authorizeRoles  from '../middleware/roleMiddleware.js';
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/Medicine'
+ *           example: 
+ *              name: Paracetamol
+ *              manufacturer: Cipla
+ *              price: 50
+ *              quantity: 20
+ *              expiryDate: 2026-12-31
+ *              category: Tablet
+ *              lowStockThreshold: 5
  *     responses:
  *       201:
  *         description: Medicine created successfully
