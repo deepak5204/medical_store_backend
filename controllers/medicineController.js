@@ -24,14 +24,39 @@ const addMedicine = async (req, res) => {
 };
 
 
-// Get All Medicines
+// Get All Medicines + pagination + search
 const getAllMedicines = async (req, res) => {
+  console.log("get all medicine")
+
   try {
-    const medicines = await Medicine.find();
-    res.json(medicines);
+    const page = Number(req.query.page) || 1
+    const limit = Number(req.query.limit) || 5
+    const search = req.query.search || ""
+
+    const skip = (page - 1) * limit
+
+    const filter = {
+      name: { $regex: search, $options: "i" }
+    }
+
+    const totalMedicines = await Medicine.countDocuments(filter)
+
+    const medicines = await Medicine.find(filter)
+      .skip(skip)
+      .limit(limit)
+
+    const totalPages = Math.ceil(totalMedicines / limit)
+
+    res.json({
+      medicines,
+      totalPages,
+      currentPage: page
+    })
+
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message })
   }
+
 };
 
 // Get Medicine by ID
@@ -137,19 +162,24 @@ const searchMedicine = async (req, res) => {
 
 // Pagination for Medicines
 const getMedicinesWithPagination = async (req, res) => {
+  console.log("pagination data fatched")
   try {
     const page = Number(req.query.page) || 1;
-
-    console.log("Page number:", page);
-
-    const limit = 3;
+    const limit = 5;
     const skip = (page - 1) * limit;
 
+    const totalMedicines = await Medicine.countDocuments()
     const medicines = await Medicine.find()
       .skip(skip)
       .limit(limit);
 
-    res.json(medicines);
+    const totalPages = Math.ceil(totalMedicines / limit)
+
+    res.json({
+      medicines,
+      totalPages,
+      currentPage: page
+    })
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

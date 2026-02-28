@@ -22,6 +22,6 @@ const router = express.Router();
  *              500: 
  *                  description: Internal server error
  */
-router.get("/stats", authMiddleware, dashboardController.getDashboardStats);
+router.get("/stats",  authMiddleware, dashboardController.getDashboardStats);
 
 export default router;

@@ -2,6 +2,7 @@ import Medicine from "../models/Medicine.js";
 
 const getDashboardStats = async (req, res) => {
   try {
+    console.log('get dashboard stats called');
 
     // Total Medicines Count
     const totalMedicines = await Medicine.countDocuments();

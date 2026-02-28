@@ -65,7 +65,7 @@ router.post("/", authMiddleware, authorizeRoles("admin"), validate(medicineSchem
  *       500:
  *         description: Internal server error
  */
-router.get("/", medicineController.getAllMedicines);
+router.get("/", authMiddleware, medicineController.getAllMedicines);
 
 /**
  * @swagger

@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import cors from 'cors'
 dotenv.config();
 import express from 'express';
 import db from './config/db.js';
@@ -23,6 +24,8 @@ app.use(errorHandler);
 // middle for parse request body( form data)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors())
 
 // Routes
 app.use("/api/medicines", medicineRoutes);
