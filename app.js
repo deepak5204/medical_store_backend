@@ -6,6 +6,7 @@ import db from './config/db.js';
 import medicineRoutes from "./routes/medicineRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 import errorHandler from "./middleware/errorMiddleware.js";
@@ -31,6 +32,7 @@ app.use(cors())
 app.use("/api/medicines", medicineRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/users", userRoutes);
 
 // Start the server
 app.listen(PORT, (err) => {
