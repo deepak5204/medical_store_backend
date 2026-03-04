@@ -52,7 +52,9 @@ router.post("/", authMiddleware, authorizeRoles("admin"), validate(medicineSchem
  * /api/medicines:
  *   get:
  *     summary: Get all medicines
- *     tags: [Medicines]
+ *     tags: [Medicines]`
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: List of medicines
