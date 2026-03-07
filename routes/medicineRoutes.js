@@ -2,9 +2,9 @@ import express from 'express';
 import validate from "../middleware/validateMiddleware.js";
 import { medicineSchema } from "../validation/medicineValidation.js";
 const router = express.Router();
-import medicineController from '../controllers/medicineController.js';  
+import medicineController from '../controllers/medicineController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
-import authorizeRoles  from '../middleware/roleMiddleware.js';
+import authorizeRoles from '../middleware/roleMiddleware.js';
 
 /**
  * @swagger
@@ -51,19 +51,50 @@ router.post("/", authMiddleware, authorizeRoles("admin"), validate(medicineSchem
  * @swagger
  * /api/medicines:
  *   get:
- *     summary: Get all medicines
- *     tags: [Medicines]`
+ *     summary: Get all medicines with pagination and search
+ *     description: Retrieve a list of medicines with optional search filtering and pagination controls.
+ *     tags: [Medicines]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Search by medicine name or category
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: The page number to retrieve
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Number of items per page
  *     responses:
  *       200:
- *         description: List of medicines
+ *         description: A paginated list of medicines
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Medicine'
+ *               type: object
+ *               properties:
+ *                 totalItems:
+ *                   type: integer
+ *                   example: 100
+ *                 totalPages:
+ *                   type: integer
+ *                   example: 10
+ *                 currentPage:
+ *                   type: integer
+ *                   example: 1
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Medicine'
  *       500:
  *         description: Internal server error
  */
