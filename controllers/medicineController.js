@@ -44,7 +44,7 @@ const getAllMedicines = async (req, res) => {
     const medicines = await Medicine.find(filter)
       .skip(skip)
       .limit(limit)
-      .sort({ createdAt: -1 })
+      .sort({ lowStockThreshold: -1 })
 
     const totalPages = Math.ceil(totalMedicines / limit)
 

@@ -7,6 +7,7 @@ import medicineRoutes from "./routes/medicineRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import saleRoutes from "./routes/saleRoutes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 import errorHandler from "./middleware/errorMiddleware.js";
@@ -33,6 +34,7 @@ app.use("/api/medicines", medicineRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/sales", saleRoutes);
 
 // Start the server
 app.listen(PORT, (err) => {
