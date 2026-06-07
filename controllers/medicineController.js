@@ -47,8 +47,10 @@ const getAllMedicines = async (req, res) => {
       .sort({ lowStockThreshold: -1 })
 
     const totalPages = Math.ceil(totalMedicines / limit)
+    
 
     res.json({
+      totalMedicines,
       medicines,
       totalPages,
       currentPage: page
@@ -145,20 +147,6 @@ const getExpiringMedicines = async (req, res) => {
   }
 };
 
-// Search Medicine
-const searchMedicine = async (req, res) => {
-  try {
-    const keyword = req.query.name || "";    
-
-    const medicines = await Medicine.find({
-      name: { $regex: keyword, $options: "i" }
-    });
-    
-    res.json(medicines);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
 
 
 // Pagination for Medicines
